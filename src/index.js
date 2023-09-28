@@ -1,12 +1,13 @@
 import { readFileSync } from 'fs';
 import path from 'path';
-import makeTree from 'buildTree.js';
+import makeTree from './buildTree.js';
+import makeStylish from './stylish.js';
 
 const getPath = (fileName) => path.resolve(process.cwd(), fileName);
 
 const getExtension = (fileName) => path.extname(fileName).slice(1);
 
-const genDiff = (filepath1, filepath2, format) => {
+const genDiff = (filepath1, filepath2) => {
   const filePath1 = getPath(filepath1);
   const filePath2 = getPath(filepath2);
 
@@ -18,10 +19,15 @@ const genDiff = (filepath1, filepath2, format) => {
 
   const parsedData1 = JSON.parse(fileData1);
   const parsedData2 = JSON.parse(fileData2);
-
+  
   const tree = makeTree(parsedData1, parsedData2);
 
   // return JSON.stringify(tree);
+  // return tree;
+  return makeStylish(tree);
 };
+
+
+console.log(genDiff('_fixtures_/file1.json', '_fixtures_/file2.json'))
 
 export default genDiff;
