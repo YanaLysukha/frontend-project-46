@@ -17,8 +17,9 @@ const makeTree = (obj1, obj2) => {
     if (obj1[key] === obj2[key]) {
       return { key, value: obj1[key], status: 'unupdated' };
     }
-    return { key, oldValue: obj1[key], newValue: obj2[key], status: 'updated' };
+    return {
+      key, oldValue: obj1[key], newValue: obj2[key], status: 'updated',
+    };
   });
 };
 export default makeTree;
-

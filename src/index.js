@@ -5,29 +5,25 @@ import makeStylish from './stylish.js';
 
 const getPath = (fileName) => path.resolve(process.cwd(), fileName);
 
-const getExtension = (fileName) => path.extname(fileName).slice(1);
+// const getExtension = (fileName) => path.extname(fileName).slice(1);
 
 const genDiff = (filepath1, filepath2) => {
   const filePath1 = getPath(filepath1);
   const filePath2 = getPath(filepath2);
 
-  const fileExt1 = getExtension(filepath1);
-  const fileExt2 = getExtension(filepath2);
+  // const fileExt1 = getExtension(filepath1);
+  // const fileExt2 = getExtension(filepath2);
 
   const fileData1 = readFileSync(filePath1, 'utf-8');
   const fileData2 = readFileSync(filePath2, 'utf-8');
 
   const parsedData1 = JSON.parse(fileData1);
   const parsedData2 = JSON.parse(fileData2);
-  
   const tree = makeTree(parsedData1, parsedData2);
 
   // return JSON.stringify(tree);
   // return tree;
   return makeStylish(tree);
 };
-
-
-console.log(genDiff('_fixtures_/file1.json', '_fixtures_/file2.json'))
 
 export default genDiff;

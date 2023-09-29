@@ -1,7 +1,9 @@
 const makeStylish = (tree) => {
   const result = tree.map((obj) => {
     const chars = { added: '+ ', removed: '- ', unchanged: '  ' };
-    const { key, value, oldValue, newValue, status } = obj;
+    const {
+      key, value, oldValue, newValue, status,
+    } = obj;
     switch (status) {
       case 'unupdated':
         return `  ${chars.unchanged} ${key}: ${value}`;
@@ -14,6 +16,8 @@ const makeStylish = (tree) => {
         const str2 = `  ${chars.added} ${key}: ${newValue}`;
         return `${str1}\n${str2}`;
       }
+      default:
+        throw new Error(`${status} is not defined`);
     }
   }).join('\n');
   return `{\n${result}\n}`;
