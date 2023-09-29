@@ -2,7 +2,7 @@ import yaml from 'js-yaml';
 
 const getParse = (fileData, extension) => {
   switch (extension) {
-    case 'JSON':
+    case 'json':
       return JSON.parse(fileData);
     case 'yml':
       return yaml.load(fileData);
