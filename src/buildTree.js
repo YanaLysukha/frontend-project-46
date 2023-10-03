@@ -6,7 +6,7 @@ const makeTree = (obj1, obj2) => {
   const sortedKeys = _.sortBy(_.union(keys1, keys2));
   return sortedKeys.map((key) => {
     if (_.isObject(obj1[key]) && _.isObject(obj2[key])) {
-      return { key, value: makeTree(obj1[key], obj2[key]), status: 'nested' };
+      return { key, children: makeTree(obj1[key], obj2[key]), status: 'nested' };
     }
     if (!Object.hasOwn(obj1, key)) {
       return { key, value: obj2[key], status: 'added' };

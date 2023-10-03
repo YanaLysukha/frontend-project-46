@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 import makeTree from './buildTree.js';
-import makeStylish from './stylish.js';
+import getStylish from './stylish.js';
 import getParse from './parsers.js';
 
 const getPath = (fileName) => path.resolve(process.cwd(), fileName);
@@ -21,10 +21,7 @@ const genDiff = (filepath1, filepath2) => {
   const parsedData1 = getParse(fileData1, fileExt1);
   const parsedData2 = getParse(fileData2, fileExt2);
   const tree = makeTree(parsedData1, parsedData2);
-
-  // return JSON.stringify(tree);
-  // return tree;
-  return makeStylish(tree);
+  return getStylish(tree);
 };
 
 export default genDiff;
