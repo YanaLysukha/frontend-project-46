@@ -8,7 +8,7 @@ const getPath = (fileName) => path.resolve(process.cwd(), fileName);
 
 const getExtension = (fileName) => path.extname(fileName).slice(1);
 
-const genDiff = (filepath1, filepath2, format) => {
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const filePath1 = getPath(filepath1);
   const filePath2 = getPath(filepath2);
 
@@ -25,4 +25,3 @@ const genDiff = (filepath1, filepath2, format) => {
 };
 
 export default genDiff;
-console.log(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json'));

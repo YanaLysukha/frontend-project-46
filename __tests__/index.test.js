@@ -11,11 +11,13 @@ const readFile = (filepath) => readFileSync(getFixturePath(filepath), 'utf-8');
 
 const expectedStylish = readFile('expectedStylish.txt');
 const expectedPlain = readFile('expectedPlain.txt');
+const expectedJSON = readFile('expectedJSON.txt');
 
 test.each(['json', 'yaml', 'yml'])('genDiff-test', (extension) => {
   const fileBefore = `__fixtures__/file1.${extension}`;
   const fileAfter = `__fixtures__/file2.${extension}`;
   expect(genDiff(fileBefore, fileAfter, 'stylish')).toEqual(expectedStylish);
-  expect(genDiff(fileBefore, fileAfter, 'plain')).toEqual(expectedPlain);
   expect(genDiff(fileBefore, fileAfter)).toEqual(expectedStylish);
+  expect(genDiff(fileBefore, fileAfter, 'plain')).toEqual(expectedPlain);
+  expect(genDiff(fileBefore, fileAfter, 'json')).toEqual(expectedJSON);
 });
